@@ -13,7 +13,7 @@ from EmikoRobot.modules.helper_funcs.chat_status import (
     can_promote,
     connection_status,
     user_admin,
-    user_can_promote
+    user_can_promote,
     ADMIN_CACHE,
 )
 
