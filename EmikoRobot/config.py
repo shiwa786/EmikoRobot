@@ -12,25 +12,25 @@ class Config(object):
     # REQUIRED
     # Login to https://my.telegram.org and fill in these slots with the details given by it
 
-    API_ID = 123456  # integer value, dont use ""
-    API_HASH = "awoo"
-    TOKEN = "BOT_TOKEN"  # This var used to be API_KEY but it is now TOKEN, adjust accordingly.
-    OWNER_ID = 1606221784  # If you dont know, run the bot and do /id in your private chat with it, also an integer
+    API_ID = 10448562  # integer value, dont use ""
+    API_HASH = "4a8a640bb154fc59227ccbcb5d5ce612"
+    TOKEN = "5643681960:AAHwNOqT9DFsxYDvCudTe2IOAkwjA_RghQQ"  # This var used to be API_KEY but it is now TOKEN, adjust accordingly.
+    OWNER_ID = 5497627952  # If you dont know, run the bot and do /id in your private chat with it, also an integer
     OPENWEATHERMAP_ID = 22322
-    OWNER_USERNAME = "Scotchers"
-    BOT_USERNAME = "EmiexRobot"
-    SUPPORT_CHAT = "FumikaSupportGroup"  # Your own group for support, do not add the @
+    OWNER_USERNAME = "Denvil_xdd"
+    BOT_USERNAME = "miselisarobot"
+    SUPPORT_CHAT = "Elisha_support"  # Your own group for support, do not add the @
     JOIN_LOGGER = (
-        -1001748076180
+        -1001561993353
     )  # Prints any new group the bot is added to, prints just the name and ID.
     EVENT_LOGS = (
-        -1001748076180
+        -1001561993353
     )  # Prints information like gbans, sudo promotes, AI enabled disable states that may help in debugging and shit
-    ERROR_LOG = -1001657496255
+    ERROR_LOG = -1001561993353
 
     # RECOMMENDED
-    SQLALCHEMY_DATABASE_URI = "something://somewhat:user@hosturl:port/databasename"  # needed for any database modules
-    MONGO_DB_URI = "mongo+srv"  # needed for any database modules
+    SQLALCHEMY_DATABASE_URI = "postgresql://xuajpuxl:k2vvRADJk0ggkxGf0AgTb9IJ2iwv5Mhu@mouse.db.elephantsql.com/xuajpuxl"  # needed for any database modules
+    MONGO_DB_URL = "mongodb+srv://Alexabot:Alexabotdb@cluster0.6m9qtav.mongodb.net/?retryWrites=true&w=majority"  # needed for any database modules
     ARQ_API_URL = "https://arq.hamker.in"
     ARQ_API_KEY = "BCYKVF-KYQWFM-JCMORU-RZWOFQ-ARQ"
     BOT_API_URL = "https://api.telegram.org/bot"
@@ -81,9 +81,10 @@ class Config(object):
     CF_API_KEY = "jk"
     BL_CHATS = []  # List of groups that you want blacklisted.
     SESSION_STRING = "12342"
-    STRING_SESSION = "kontol"
+    STRING_SESSION = "1BVtsOKoBu35rFEnRRALsFCX5FeXUZ3HyWFzy7bVnZoP4uWkkneh1dQkos02BgZUanqHjTkuN0B3qcSfIqRQID6qFVnI8C-veGlc9BJs0PUnEJ8ik7NUQf05kkXgMkkN7Qx28sVC9NKsnXnJWvn1V305EBLFJPYABIB5iF8EAuJ5U1qUlZ2l4PM34JFT3ktYQ_Z6wgHb_Y-5lzQAZ2VUhUi8ftxWHZqMCtbUaDNsSw8DMRbcUEfDTJ7mnZIESFbNwwLZxwDxJ6tiFU3ce73hFP7c_M5VEGFvjHa3tbTETc_3arsyYekcclrIT5fg0XGgI_hjLfwr5FUHmdxvlF6eqk-tGH30pU5I="
     MONGO_PORT = 27017
-    MONGO_DB = "Emiko"
+    MONGO_DB = "EMIKO"
+    ASSE_USERS = "5497627952"
 
 class Production(Config):
     LOGGER = True
