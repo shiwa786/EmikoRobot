@@ -11,6 +11,7 @@ from typing import Optional
 from cachetools import TTLCache	
 from threading import RLock
 from telegram import User, Chat, ChatMember, Update, Bot
+from telegram.ext import CallbackContext
 
 from EmikoRobot import DEL_CMDS, DRAGONS, WOLVES, DEV_USERS, TIGERS, DEMONS 
 import EmikoRobot.modules.sql.admin_sql as admin_sql
