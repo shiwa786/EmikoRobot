@@ -87,6 +87,89 @@ def is_user_in_chat(chat: Chat, user_id: int) -> bool:
     member = chat.get_member(user_id)
     return member.status not in ('left', 'kicked')
 
+def dev_plus(func):
+    @wraps(func)
+    def is_dev_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
+        bot = context.bot
+        user = update.effective_user
+
+        if user.id in DEV_USERS:
+            return func(update, context, *args, **kwargs)
+        if not user:
+            pass
+        elif DEL_CMDS and " " not in update.effective_message.text:
+            try:
+                update.effective_message.delete()
+            except:
+                pass
+        else:
+            update.effective_message.reply_text(
+                "This is a developer restricted command."
+                " You do not have permissions to run this.",
+            )
+
+    return is_dev_plus_func
+
+def sudo_plus(func):
+    @wraps(func)
+    def is_sudo_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
+        bot = context.bot
+        user = update.effective_user
+        chat = update.effective_chat
+
+        if user and is_sudo_plus(chat, user.id):
+            return func(update, context, *args, **kwargs)
+        if not user:
+            pass
+        elif DEL_CMDS and " " not in update.effective_message.text:
+            try:
+                update.effective_message.delete()
+            except:
+                pass
+        else:
+            update.effective_message.reply_text(
+                "Who dis non-admin telling me what to do? You want a punch?",
+            )
+
+    return is_sudo_plus_func
+
+
+def support_plus(func):
+    @wraps(func)
+    def is_support_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
+        bot = context.bot
+        user = update.effective_user
+        chat = update.effective_chat
+
+        if user and is_support_plus(chat, user.id):
+            return func(update, context, *args, **kwargs)
+        if DEL_CMDS and " " not in update.effective_message.text:
+            try:
+                update.effective_message.delete()
+            except:
+                pass
+
+    return is_support_plus_func
+
+def whitelist_plus(func):
+    @wraps(func)
+    def is_whitelist_plus_func(
+        update: Update,
+        context: CallbackContext,
+        *args,
+        **kwargs,
+    ):
+        bot = context.bot
+        user = update.effective_user
+        chat = update.effective_chat
+
+        if user and is_whitelist_plus(chat, user.id):
+            return func(update, context, *args, **kwargs)
+        update.effective_message.reply_text(
+            f"You don't have access to use this.\nVisit @{SUPPORT_CHAT}",
+        )
+
+    return is_whitelist_plus_func
 
 def bot_can_delete(func):
     @wraps(func)
