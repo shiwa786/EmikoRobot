@@ -12,15 +12,25 @@ from cachetools import TTLCache
 from threading import RLock
 from telegram import User, Chat, ChatMember, Update, Bot
 
-from marvel import DEL_CMDS, SUDO_USERS, WHITELIST_USERS
-import marvel.modules.sql.admin_sql as admin_sql
-from marvel.modules.translations.strings import tld
+from EmikoRobot import DEL_CMDS, DRAGONS, WOLVES, DEV_USERS, TIGERS, DEMONS 
+import EmikoRobot.modules.sql.admin_sql as admin_sql
+from EmikoRobot.modules.translations.strings import tld
 
-from marvel.mwt import MWT
+from EmikoRobot.mwt import MWT
 
 # stores admemes in memory for 10 min.	
 ADMIN_CACHE = TTLCache(maxsize=512, ttl=60 * 10, timer=perf_counter)	
 THREAD_LOCK = RLock()	
+
+def is_whitelist_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
+    return any(user_id in user for user in [WOLVES, TIGERS, DEMONS, DRAGONS, DEV_USERS])
+
+def is_support_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
+    return user_id in DEMONS or user_id in DRAGONS or user_id in DEV_USERS
+
+def is_sudo_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
+    return user_id in DRAGONS or user_id in DEV_USERS
+
 
 def can_delete(chat: Chat, bot_id: int) -> bool:
     return chat.get_member(bot_id).can_delete_messages
@@ -286,3 +296,34 @@ def user_can_promote(func):
         return func(update, context, *args, **kwargs)	
 
     return permoter
+
+def connection_status(func):
+    @wraps(func)
+    def connected_status(update: Update, context: CallbackContext, *args, **kwargs):
+        conn = connected(
+            context.bot,
+            update,
+            update.effective_chat,
+            update.effective_user.id,
+            need_admin=False,
+        )
+
+        if conn:
+            chat = dispatcher.bot.getChat(conn)
+            update.__setattr__("_effective_chat", chat)
+            return func(update, context, *args, **kwargs)
+        if update.effective_message.chat.type == "private":
+            update.effective_message.reply_text(
+                "Send /connect in a group that you and I have in common first.",
+            )
+            return connected_status
+
+        return func(update, context, *args, **kwargs)
+
+    return connected_status
+
+
+# Workaround for circular import with connection.py
+from EmikoRobot.modules import connection
+
+connected = connection.connected
