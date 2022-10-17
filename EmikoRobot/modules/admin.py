@@ -13,6 +13,7 @@ from EmikoRobot.modules.helper_funcs.chat_status import (
     can_promote,
     connection_status,
     user_admin,
+    user_can_promote
     ADMIN_CACHE,
 )
 
@@ -161,6 +162,7 @@ def setchat_title(update: Update, context: CallbackContext):
 @connection_status
 @bot_admin
 @can_promote
+@user_can_promote
 @user_admin
 @loggable
 def promote(update: Update, context: CallbackContext) -> str:
@@ -243,6 +245,7 @@ def promote(update: Update, context: CallbackContext) -> str:
 @connection_status
 @bot_admin
 @can_promote
+@user_can_promote
 @user_admin
 @loggable
 def lowpromote(update: Update, context: CallbackContext) -> str:
@@ -320,6 +323,7 @@ def lowpromote(update: Update, context: CallbackContext) -> str:
 @connection_status
 @bot_admin
 @can_promote
+@user_can_promote
 @user_admin
 @loggable
 def fullpromote(update: Update, context: CallbackContext) -> str:
@@ -408,6 +412,7 @@ def fullpromote(update: Update, context: CallbackContext) -> str:
 @connection_status
 @bot_admin
 @can_promote
+@user_can_promote
 @user_admin
 @loggable
 def demote(update: Update, context: CallbackContext) -> str:
@@ -558,6 +563,7 @@ def set_title(update: Update, context: CallbackContext):
 @bot_admin
 @can_pin
 @user_admin
+@user_can_pin
 @loggable
 def pin(update: Update, context: CallbackContext) -> str:
     bot, args = context.bot, context.args
@@ -624,6 +630,7 @@ def pin(update: Update, context: CallbackContext) -> str:
 @bot_admin
 @can_pin
 @user_admin
+@user_can_pin
 @loggable
 def unpin(update: Update, context: CallbackContext):
     chat = update.effective_chat
