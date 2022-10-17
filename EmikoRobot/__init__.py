@@ -149,7 +149,6 @@ else:
     ALLOW_CHATS = Config.ALLOW_CHATS
     try:
         DRAGONS = {int(x) for x in Config.DRAGONS or []}
-        ASSE_USERS = {int(x) for x in Config.ASSE_USERS or []}
     except ValueError:
         raise Exception("Your sudo or dev users list does not contain valid integers.")
 
