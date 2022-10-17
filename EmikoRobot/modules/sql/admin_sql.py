@@ -1,9 +1,9 @@
 import threading
 from typing import Union
 
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Column, BigInteger, String, Boolean
 
-from marvel.modules.sql import SESSION, BASE
+from EmikoRobot.modules.sql import SESSION, BASE
 
 
 class CommandReactionChatSettings(BASE):
