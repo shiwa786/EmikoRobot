@@ -14,7 +14,6 @@ from telegram import User, Chat, ChatMember, Update, Bot
 
 from EmikoRobot import DEL_CMDS, DRAGONS, WOLVES, DEV_USERS, TIGERS, DEMONS 
 import EmikoRobot.modules.sql.admin_sql as admin_sql
-from EmikoRobot.modules.translations.strings import tld
 
 from EmikoRobot.mwt import MWT
 
