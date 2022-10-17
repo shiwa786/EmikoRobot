@@ -233,7 +233,7 @@ def sudo_user(func):
     @wraps(func)
     def is_admin(update, context, *args, **kwargs):
         user = update.effective_user  # type: Optional[User]
-        if user.id in SUDO_USERS:
+        if user.id in DRAGONS:
             return func(update, context, *args, **kwargs)
 
         elif not user:
@@ -302,7 +302,7 @@ def user_can_ban(func):
         member = update.effective_chat.get_member(user)
 
         if not (member.can_restrict_members or
-                member.status == "creator") and not user in SUDO_USERS:
+                member.status == "creator") and not user in DRAGONS:
             update.effective_message.reply_text(
                 "You are missing the following rights to use this command: \nCanRestrictUsers.")
             return ""
@@ -321,7 +321,7 @@ def user_can_delete(func):
         member = update.effective_chat.get_member(user)
         
 
-        if not (member.can_delete_messages or member.status == "creator") and not user in SUDO_USERS:
+        if not (member.can_delete_messages or member.status == "creator") and not user in DRAGONS:
             update.effective_message.reply_text("You are missing the following rights to use this command: \nCanDeleteMessages")	
             return ""	
              
@@ -339,7 +339,7 @@ def user_can_pin(func):
         member = update.effective_chat.get_member(user)
         
 
-        if not (member.can_pin_messages or member.status == "creator") and not user in SUDO_USERS:
+        if not (member.can_pin_messages or member.status == "creator") and not user in DRAGONS:
             update.effective_message.reply_text("You are missing the following rights to use this command: \nCanPinMessages")	
             return ""	
 
@@ -355,7 +355,7 @@ def user_can_change(func):
         member = update.effective_chat.get_member(user)	
         
 
-        if not (member.can_change_info or member.status == "creator") and not user in SUDO_USERS:
+        if not (member.can_change_info or member.status == "creator") and not user in DRAGONS:
             update.effective_message.reply_text("You are missing the following rights to use this command: \nCanChangeInfo")
                    	
             return ""	
@@ -372,7 +372,7 @@ def user_can_promote(func):
         member = update.effective_chat.get_member(user)	
         
 
-        if not (member.can_promote_members or member.status == "creator") and not user in SUDO_USERS:
+        if not (member.can_promote_members or member.status == "creator") and not user in DRAGONS:
             update.effective_message.reply_text("You are missing the following rights to use this command: \nCanPromoteUsers")	
             return ""	
 
